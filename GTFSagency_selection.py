@@ -35,7 +35,6 @@ import pandas as pd
 from collections import defaultdict
 import os
 
-
 class GTFSagencySelect:
     """QGIS Plugin Implementation."""
 
