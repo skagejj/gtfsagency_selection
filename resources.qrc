@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/plugins/GTFSagency_selection" >
+        <file>icon.png</file>
+    </qresource>
+</RCC>
