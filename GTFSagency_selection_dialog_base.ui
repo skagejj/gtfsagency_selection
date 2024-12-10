@@ -19,8 +19,21 @@
      <property name="title">
       <string>Select the Public Transport Agency</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_3">
-      <item>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="2" column="0">
+       <widget class="QListWidget" name="listAgenciesWidget">
+        <property name="editTriggers">
+         <set>QAbstractItemView::NoEditTriggers</set>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::MultiSelection</enum>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectItems</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
        <widget class="QPushButton" name="updateAgenciesButton">
         <property name="maximumSize">
          <size>
@@ -33,10 +46,23 @@
         </property>
        </widget>
       </item>
-      <item>
-       <widget class="QListWidget" name="listAgenciesWidget">
-        <property name="selectionMode">
-         <enum>QAbstractItemView::MultiSelection</enum>
+      <item row="1" column="2">
+       <widget class="QPushButton" name="searchButton">
+        <property name="text">
+         <string>Search</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QTextEdit" name="textEdit">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>27</height>
+         </size>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
         </property>
        </widget>
       </item>

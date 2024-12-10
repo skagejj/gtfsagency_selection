@@ -23,7 +23,9 @@
 """
 from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication
 from qgis.PyQt.QtGui import QIcon
-from qgis.PyQt.QtWidgets import QAction, QListWidgetItem
+from qgis.PyQt.QtWidgets import QAction, QListWidgetItem, QWidget
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QWidget
 
 # Initialize Qt resources from file resources.py
 from .resources import *
@@ -176,6 +178,8 @@ class GTFSagencySelect:
 
         self.GTFSagency_selection_dialog.updateAgenciesButton.clicked.connect(self.__updateAgences)
 
+        self.GTFSagency_selection_dialog.searchButton.clicked.connect(self.___searchItem)
+
     def __updateAgences(self):
         self.GTFSagency_selection_dialog.listAgenciesWidget.clear()  # Clear existing items
         dwnldfld = self.GTFSagency_selection_dialog.downloadDirFileWidget.filePath()
@@ -188,6 +192,13 @@ class GTFSagencySelect:
         ls_agency = agency.id_name.unique()
         for agen in ls_agency:
             self.GTFSagency_selection_dialog.listAgenciesWidget.addItem(QListWidgetItem(str(agen)))
+
+    def ___searchItem(self):
+        search_string = self.GTFSagency_selection_dialog.textEdit.toPlainText()
+        match_items = self.GTFSagency_selection_dialog.listAgenciesWidget.findItems(search_string, Qt.MatchContains)
+        for i in range(self.GTFSagency_selection_dialog.listAgenciesWidget.count()):
+            it = self.GTFSagency_selection_dialog.listAgenciesWidget.item(i)
+            it.setHidden(it not in match_items)
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
