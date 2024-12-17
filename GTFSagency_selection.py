@@ -244,6 +244,8 @@ class GTFSagencySelect:
             trips_txt = str(dwnldfld)+'/trips.txt'
             stop_times_txt =str(dwnldfld)+'/stop_times.txt'
             stops_txt =str(dwnldfld)+'/stops.txt'
+            calendar_txt =str(dwnldfld)+'/calendar.txt'
+            calendar_dates_txt =str(dwnldfld)+'/calendar_dates.txt'
 
             agency = pd.read_csv(agency_txt, dtype={'agency_id':'str'})
             routes = pd.read_csv(routes_txt,dtype='str')
@@ -252,6 +254,9 @@ class GTFSagencySelect:
             stop_times = pd.read_csv(stop_times_txt,dtype=types)
             types = defaultdict(lambda: str, stop_lon="float", stop_lat="float")
             stops = pd.read_csv(stops_txt,dtype =types)
+            calendar = pd.read_csv (calendar_txt,dtype='str')
+            calendar_dates = pd.read_csv (calendar_dates_txt,dtype='str')
+
 
             agencies_num = []
 
@@ -277,25 +282,24 @@ class GTFSagencySelect:
             agency_select.to_csv(str(agency_fld)+'/agency.txt', index=False)
 
             agency_routes = routes[routes.agency_id.isin(agencies_num)]
-            
             agency_routes.to_csv(str(agency_fld)+'/routes.txt', index=False)
 
             ls_routes = agency_routes.route_id.unique()
-
             trips_agency = trips[trips.route_id.isin(ls_routes)]
-
             trips_agency.to_csv(str(agency_fld)+'/trips.txt', index=False)
 
             ls_trips = trips_agency.trip_id.unique()
-
             agency_stop_times = stop_times[stop_times.trip_id.isin(ls_trips)]
-
             agency_stop_times.to_csv(str(agency_fld)+'/stop_times.txt', index=False)
 
             ls_stops = agency_stop_times.stop_id.unique()
-
             agency_stops = stops[stops.stop_id.isin(ls_stops)]
-
             agency_stops.to_csv(str(agency_fld)+'/stops.txt', index=False)
 
-       
+            ls_service= trips_agency.service_id.unique()
+
+            agency_calendar = calendar[calendar.service_id.isin(ls_service)]
+            agency_calendar.to_csv(str(agency_fld)+'/calendar.txt')
+
+            agency_calendar_dates = calendar_dates[calendar_dates.service_id.isin(ls_service)]
+            agency_calendar_dates.to_csv(str(agency_fld)+'/calendar_dates.txt')

@@ -37,12 +37,12 @@
        <widget class="QPushButton" name="updateAgenciesButton">
         <property name="maximumSize">
          <size>
-          <width>200</width>
+          <width>150</width>
           <height>16777215</height>
          </size>
         </property>
         <property name="text">
-         <string>update the agencies</string>
+         <string>Update the agencies</string>
         </property>
        </widget>
       </item>
