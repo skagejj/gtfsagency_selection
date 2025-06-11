@@ -30,6 +30,12 @@ The GTFS Agency Selection Plugin is a tool for QGIS that allows users to filter 
 4. Click the "Update Agencies" button to refresh the list.
 5. Click "OK" to generate the filtered GTFS files in a new folder.
 
+## Explanation Video
+
+For a detailed walkthrough of how to use the GTFS Agency Selection Plugin, watch the explanation video below:
+
+<iframe src="https://drive.google.com/file/d/1yul0ZpfBc6-egv7DYJP-tYZC0cBT8gI0/preview" width="896" height="672" allow="autoplay"></iframe>
+
 ## Requirements
 
 - QGIS 3.x
