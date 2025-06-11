@@ -34,10 +34,6 @@ The GTFS Agency Selection Plugin is a tool for QGIS that allows users to filter 
 
 For a detailed walkthrough of how to use the GTFS Agency Selection Plugin, watch the explanation video [here](https://drive.google.com/file/d/1yul0ZpfBc6-egv7DYJP-tYZC0cBT8gI0/view?usp=drive_link).
 
-If you'd like to embed the video in a webpage, you can use the following iframe code:
-```html
-<iframe src="https://drive.google.com/file/d/1yul0ZpfBc6-egv7DYJP-tYZC0cBT8gI0/preview" width="896" height="672" allow="autoplay"></iframe>
-```
 
 ## Requirements
 
