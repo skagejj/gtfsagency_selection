@@ -7,8 +7,8 @@ The GTFS Agency Selection Plugin is a tool for QGIS that allows users to filter 
 ## Plugin Series
 
 This plugin is the second in a series of four plugins designed to work together for comprehensive public transport analysis:
-1. **GTFS Agency Selection** ([GitHub Repository](https://github.com/skagejj/gtfsagency_selection)): Focuses on selecting and filtering GTFS data for specific agencies.
-2. **OSM Import Roads and Public Transport Stops** (This Plugin): Handles the import and integration of OSM road and stop data with GTFS datasets.
+1. **GTFS Agency Selection** (This Plugin): Focuses on selecting and filtering GTFS data for specific agencies.
+2. **OSM Import Roads and Public Transport Stops** ([GitHub Repository](https://github.com/skagejj/OSMimport_roads_PTstops.git)): Handles the import and integration of OSM road and stop data with GTFS datasets.
 3. **OSM PT Routing** ([GitHub Repository](https://github.com/skagejj/osm_pt_routing)): Provides advanced routing capabilities using the processed OSM and GTFS data.
 4. **GTFS Shapes Tracer** ([GitHub Repository](https://github.com/skagejj/gtfs_shapes_tracer)): Generates GTFS shapes based on spatial data for accurate route visualization.
 
