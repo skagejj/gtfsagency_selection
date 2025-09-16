@@ -23,9 +23,9 @@
 """
 from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication
 from qgis.PyQt.QtGui import QIcon
-from qgis.PyQt.QtWidgets import QAction, QListWidgetItem, QWidget
+from qgis.PyQt.QtWidgets import QAction, QListWidgetItem
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QMessageBox
 
 # Initialize Qt resources from file resources.py
 from .resources import *
@@ -36,6 +36,10 @@ import os.path
 import pandas as pd
 from collections import defaultdict
 import os
+import webbrowser
+import glob
+import zipfile
+import time
 
 class GTFSagencySelect:
     """QGIS Plugin Implementation."""
@@ -176,9 +180,51 @@ class GTFSagencySelect:
         # will be set False in run()
         self.first_start = True
 
-        self.GTFSagency_selection_dialog.updateAgenciesButton.clicked.connect(self.__updateAgences)
+        self.GTFSagency_selection_dialog.SwissLink_for_the_Download.clicked.connect(self.__goToSwissLink)
+        
+        self.GTFSagency_selection_dialog.LookFor_the_GTFS_Zips.clicked.connect(self.__lookForZips)
+        
+        self.GTFSagency_selection_dialog.UnzipButton.clicked.connect(self.__unzipFile)
 
+        self.GTFSagency_selection_dialog.updateAgenciesButton.clicked.connect(self.__updateAgences)
+    
         self.GTFSagency_selection_dialog.searchButton.clicked.connect(self.___searchItem)
+
+    def __goToSwissLink(self):
+        webbrowser.open('https://data.opentransportdata.swiss/en/dataset/?q=GTFS&groups=timetables&sort=metadata_modified+desc')
+    
+    def __lookForZips(self):
+        directory = os.path.expanduser('~')
+        pattern = os.path.join(directory, '**', 'gtfs*.zip')
+        zip_files = glob.glob(pattern, recursive=True)
+        if zip_files:
+            for file in zip_files:
+                self.GTFSagency_selection_dialog.listGTFSzipFiles.addItem(QListWidgetItem(str(file)))
+        else:
+            error_message = '!!! no zip files found in '+str(directory)+' !!!'
+            self.GTFSagency_selection_dialog.listGTFSzipFiles.addItem(QListWidgetItem(str(error_message)))
+
+    def __unzipFile(self):
+        file_to_unzip = os.path.abspath(self.GTFSagency_selection_dialog.listGTFSzipFiles.selectedItems()[0].text()) if self.GTFSagency_selection_dialog.listGTFSzipFiles.selectedItems() else None  
+        
+        if file_to_unzip:
+            directory_to_extract_to = os.path.join(os.path.expanduser('~'), 'Documents', os.path.splitext(os.path.basename(file_to_unzip))[0])
+        else:
+            file_to_unzip = self.GTFSagency_selection_dialog.Zip_mQgsFileWidget.filePath()
+            directory_to_extract_to = os.path.abspath(os.path.join(file_to_unzip, os.pardir,os.path.splitext(os.path.basename(file_to_unzip))[0]))
+
+        with zipfile.ZipFile(file_to_unzip, 'r') as zip_ref:
+            zip_ref.extractall(directory_to_extract_to)
+    
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Information)
+        # setting message for Message Box
+        msg.setText("The file "+str(file_to_unzip)+" was unzipped \n in the folder: "+str(directory_to_extract_to))
+        # setting Message box window title
+        msg.setWindowTitle("Unzipped file")
+        msg.exec_()
+
+        print('extracted to: '+str(directory_to_extract_to))
 
     def __updateAgences(self):
         self.GTFSagency_selection_dialog.listAgenciesWidget.clear()  # Clear existing items
@@ -233,6 +279,13 @@ class GTFSagencySelect:
         if result:
             # Do something useful here - delete the line containing pass and
             # substitute with your code.
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Information)
+            # setting message for Message Box
+            msg.setText("The \'Agency selection\' is in progress wait until the message box is closed")
+            # setting Message box window title
+            msg.setWindowTitle("!! wait the next message \'GTFS agency selection\' is in progress !!")
+            msg.show()
 
             ls_agencies_selected = [item.text() for item in selected_items]
             print('you selected:')
@@ -303,3 +356,11 @@ class GTFSagencySelect:
 
             agency_calendar_dates = calendar_dates[calendar_dates.service_id.isin(ls_service)]
             agency_calendar_dates.to_csv(str(agency_fld)+'/calendar_dates.txt')
+
+            msg.close()
+
+            msg2 = QMessageBox()
+            msg2.setIcon(QMessageBox.Information)
+            msg2.setText("The selected agencies were saved \nin the folder: "+str(agency_fld))
+            msg2.setWindowTitle("Done !")
+            msg2.exec_()
