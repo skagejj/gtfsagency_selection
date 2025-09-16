@@ -72,7 +72,7 @@
    <item row="0" column="0">
     <widget class="QGroupBox" name="groupBox_2">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="title">
       <string>Unzip the GTFS file</string>
@@ -81,17 +81,57 @@
       <item>
        <widget class="QLabel" name="label">
         <property name="text">
-         <string>If you have't unziped the GTFS file yet, select the file:</string>
+         <string>For Switzerland Download and UnZip the file</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QgsFileWidget" name="mQgsFileWidget"/>
+       <widget class="QPushButton" name="SwissLink_for_the_Download">
+        <property name="text">
+         <string>Download the dataset at this link of data.opentransportdata.swiss</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="LookFor_the_GTFS_Zips">
+        <property name="text">
+         <string>List below the GTFS Zip files in your computer</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QListWidget" name="listGTFSzipFiles"/>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>if you don't find your GTFS zip file in the upper list, look for that by your self with the &quot;...&quot; buton on the right</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QgsFileWidget" name="Zip_mQgsFileWidget">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="fileWidgetButtonVisible">
+         <bool>true</bool>
+        </property>
+        <property name="useLink">
+         <bool>false</bool>
+        </property>
+        <property name="fullUrl">
+         <bool>false</bool>
+        </property>
+        <property name="dialogTitle">
+         <string/>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QPushButton" name="UnzipButton">
         <property name="text">
-         <string>unzip the file in the same folder where it is</string>
+         <string>unzip the file</string>
         </property>
        </widget>
       </item>
