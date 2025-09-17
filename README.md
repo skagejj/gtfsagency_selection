@@ -4,7 +4,10 @@ The first of one of the FlowRide Plugins
 ## Overview
 The GTFS Agency Selection Plugin is a tool for QGIS that allows users to filter and extract data for specific public transport agencies from GTFS (General Transit Feed Specification) files. This plugin enables users to create a new folder containing GTFS files tailored to the selected agencies, facilitating routing and analysis in OpenStreetMap (OSM) or other GIS platforms.
 
-## Plugin Series
+## Teasing
+Watch the teasing for these plugin [here](https://drive.google.com/file/d/1oaudC09QLDbCJ0qPIztnBvTf7KJRwrF7/view?usp=sharing).
+
+## FlowRide Plugin Series
 
 This plugin is the second in a series of four plugins designed to work together for comprehensive public transport analysis:
 1. **GTFS Agency Selection** (This Plugin): Focuses on selecting and filtering GTFS data for specific agencies.
@@ -17,9 +20,6 @@ This plugin is the second in a series of four plugins designed to work together 
 1. **Import Roads and Stops**: Use the plugin to download and process OSM road and stop data for your city.
 2. **Enhance GTFS Data**: Match GTFS stops with OSM stops and enrich GTFS datasets with spatial attributes.
 3. **Prepare Routing Layers**: Generate layers optimized for routing analysis, including stop positions and road segments.
-
-## Teasing
-Watch the teasing for these plugin [here](https://drive.google.com/file/d/1oaudC09QLDbCJ0qPIztnBvTf7KJRwrF7/view?usp=sharing).
 
 ## Features of GTFS Agency Selection Plugin
 
@@ -47,15 +47,13 @@ Watch the teasing for these plugin [here](https://drive.google.com/file/d/1oaudC
 4. Click the "Update Agencies" button to refresh the list.
 5. Click "OK" to generate the filtered GTFS files in a new folder.
 
-## Explanation Video
-
-For a detailed walkthrough of how to use the GTFS Agency Selection Plugin, watch the explanation video [here](https://drive.google.com/file/d/1-LpZNxSGjI7SOaZ7Hn3MHk-4omOrxm9-/view?usp=sharing).
-
+## Video Tutorial
+Watch the video tutorial for this plugin [here](https://drive.google.com/file/d/1-LpZNxSGjI7SOaZ7Hn3MHk-4omOrxm9-/view?usp=sharing).
 
 ## Requirements
-
 - QGIS 3.x
 - Python dependencies: `pandas`
+- QuickOSM
 
 ## License
 
